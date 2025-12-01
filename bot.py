@@ -5,10 +5,10 @@ import requests
 from bs4 import BeautifulSoup
 from io import BytesIO
 
-API_ID = int(os.environ.get("API_ID", "0"))
-API_HASH = os.environ.get("API_HASH", "")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
-OWNER_ID = int(os.environ.get("OWNER_ID", "0"))
+API_ID = int(os.environ.get("API_ID", "26047636"))
+API_HASH = os.environ.get("API_HASH", "d8b1ed69ae1f937c5dd4d3cc8c8de440")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8388209429:AAGSHFmVDpZqryMYJur4FGYZAjUxWEe8VIk")
+OWNER_ID = int(os.environ.get("OWNER_ID", "8367080346"))
 
 app = Client("anime_thumb_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
@@ -19,7 +19,7 @@ def thumb(client, message):
         return
 
     anime_name = " ".join(message.command[1:])
-    search_url = f"https://hi-2bgf.onrender.com/?q={anime_name}"
+    search_url = f"https://anime-banner.onrender.com/?q={anime_name}"
 
     try:
         client.send_chat_action(message.chat.id, ChatAction.TYPING)
@@ -36,7 +36,7 @@ def thumb(client, message):
             if not img_url:
                 continue
             if img_url.startswith("/"):
-                img_url = "https://hi-2bgf.onrender.com" + img_url
+                img_url = "https://anime-banner.onrender.com" + img_url
 
             img_data = requests.get(img_url).content
             img_bytes = BytesIO(img_data)
